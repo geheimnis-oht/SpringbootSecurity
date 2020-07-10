@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<title>Login Page</title>
+</head>
+<body>
+ 
+ 
+ 
+ <div class="container">
+	  <div class="col-lg-6 offset-md-3">
+	    <div class="card card-body">
+	    
+	     <h2 style="color:blue; font-weight: bold;n">Login Page</h2>
+ 
+		 <div th:if="${param.error}" style="color:red; font-style: italic;" >Invalid Credentials !</div>
+		 <div th:if="${param.logout}" style="color:green; font-style: italic;" >You've been logged out</div>
+	    
+			 <form th:action="@{/doLogin}" method="post" class="form-horizontal">
+			    <div>
+				 <label for="username" class="control-label">Username :
+				    <input name="username" type="text"/>
+				 </label >
+			    </div>
+			    <div>
+			    
+				 <label  class="control-label">Password : 
+				 <input name="password" type="password"/>	 
+				 </label>
+			    </div>
+				 <div>
+				   <input type="submit" class="btn btn-primary" value="Sign In"/>
+				 </div>
+			 </form>
+     </div>
+     </div>
+     </div>
+
+</body>
+</html>

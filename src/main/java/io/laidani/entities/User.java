@@ -1,15 +1,14 @@
 package io.laidani.entities;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table (name = "USERS")
@@ -26,9 +25,8 @@ public class User {
 	 @Column(name = "LASTNAME")
 	 private String lastname;
 	 
-	 @CreationTimestamp
 	 @Column(name = "CREATION_DATE")
-	 private Timestamp creationDate;
+	 private LocalDateTime creationDate;
 
 	public User(String username, String firstname, String lastname) {
 		super();
@@ -68,13 +66,18 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
-	public Timestamp getCreationDate() {
+	
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Timestamp creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	@PrePersist
+	protected void prePersisteUser() {
+		this.creationDate = LocalDateTime.now();
 	}
 	 	 
 }
